@@ -1,0 +1,31 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Landing from '../components/Landing.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import Home from '../components/sections/Home.astro';
+import About from '../components/sections/About.astro';
+import Book from '../components/sections/Book.astro';
+import Newsletter from '../components/sections/Newsletter.astro';
+import Contact from '../components/sections/Contact.astro';
+---
+
+<BaseLayout title="Ben Caddy">
+  <Landing />
+
+  <div id="site">
+    <Nav />
+
+    <Home />
+    <hr class="rule" />
+    <About />
+    <hr class="rule" />
+    <Book />
+    <hr class="rule" />
+    <Newsletter />
+    <hr class="rule" />
+    <Contact />
+
+    <Footer />
+  </div>
+</BaseLayout>

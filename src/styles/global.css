@@ -1,0 +1,441 @@
+/* ──────────────────────────────────────────────────────────────
+   global.css — bencaddy.com
+   Ported verbatim from the bencaddy.html prototype (the spec).
+   Palette, type, spacing and structure are LOCKED — do not redesign.
+   ────────────────────────────────────────────────────────────── */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --amber: #E8973A;
+  --black: #0D0D0D;
+  --white: #F0EDE8;
+  --grey: #787470;
+  --grey-mid: #4A4745;
+  --grey-soft: #5A5754;
+  --amber-muted: rgba(232, 151, 58, 0.5);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--black);
+  color: var(--white);
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  overflow-x: hidden;
+}
+
+/* ── LANDING ── */
+#landing {
+  position: fixed;
+  inset: 0;
+  background: var(--amber);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  cursor: pointer;
+  user-select: none;
+  transition: opacity 0.6s ease;
+}
+
+#landing-headline {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-style: italic;
+  font-size: clamp(1.8rem, 4vw, 3.2rem);
+  color: rgba(255,255,255,0.92);
+  text-align: center;
+  letter-spacing: 0.02em;
+  line-height: 1.3;
+  padding: 0 2rem;
+  max-width: 680px;
+}
+
+#landing-prompt {
+  margin-top: 4rem;
+  font-family: 'Inter', sans-serif;
+  font-weight: 300;
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.35);
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+}
+
+#particle-canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 99;
+  pointer-events: none;
+  display: none;
+}
+
+#site {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 1.2s ease 0.6s;
+}
+
+#site.visible {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2rem 4rem;
+  background: rgba(13, 13, 13, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.nav-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 400;
+  font-size: 1.05rem;
+  color: var(--white);
+  text-decoration: none;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.nav-links { display: flex; gap: 3rem; list-style: none; }
+
+.nav-links a {
+  font-family: 'Inter', sans-serif;
+  font-weight: 300;
+  font-size: 0.88rem;
+  color: var(--grey);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover { color: var(--white); }
+
+/* ── SECTIONS ──
+   The 1080px section is the container; inside it a centred reading column
+   (grid track, max 760px) keeps content visually centred on the page with
+   equal breathing room, while text stays a readable measure. The 4rem
+   horizontal padding is the minimum gutter on narrower screens. */
+section {
+  display: grid;
+  grid-template-columns: minmax(0, 760px);
+  justify-content: center;
+  padding: 7rem 4rem;
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+#home {
+  min-height: 100vh;
+  padding-top: 8rem;
+  padding-bottom: 6rem;
+  align-content: center;
+}
+
+/* ── VERTICAL RHYTHM ──
+   Subtle asymmetry per section so the page breathes — left alignment intact.
+   Scoped to desktop; mobile keeps the compact 5rem from the mobile block below.
+   #home keeps its 100vh hero (above). */
+@media (min-width: 641px) {
+  #about    { padding-top: 8rem;  padding-bottom: 8rem; }
+  #book     { padding-top: 10rem; padding-bottom: 6rem; }
+  #subscribe { padding-top: 6rem;  padding-bottom: 6rem; }
+  #contact  { padding-top: 5rem;  padding-bottom: 8rem; }
+}
+
+/* Book gets a wider reading column so the bracket frame can host the
+   760px prose; still centred on the page like every other section. */
+#book { grid-template-columns: minmax(0, 872px); }
+
+/* ── HOME ── */
+.home-name {
+  font-family: 'Inter', sans-serif;
+  font-weight: 300;
+  font-size: 0.85rem;
+  color: var(--grey);
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  margin-bottom: 2.5rem;
+}
+
+.home-headline {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-style: italic;
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  color: var(--white);
+  line-height: 1.25;
+  letter-spacing: 0.01em;
+  margin-bottom: 2.5rem;
+  max-width: 720px;
+}
+
+.home-sub {
+  font-family: 'Inter', sans-serif;
+  font-weight: 300;
+  font-size: clamp(0.95rem, 1.15vw, 1.05rem);
+  color: rgba(240,237,232,0.85);
+  line-height: 2;
+  max-width: 640px;
+  margin-bottom: 3.5rem;
+  letter-spacing: 0.015em;
+}
+
+.btn {
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  font-weight: 300;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  padding: 0.9rem 2rem;
+  background: transparent;
+  color: var(--white);
+  text-decoration: none;
+  border: 1px solid var(--grey-mid);
+  transition: border-color 0.3s, color 0.3s;
+}
+
+.btn:hover { border-color: var(--amber-muted); color: var(--amber); }
+
+.rule {
+  border: none;
+  border-top: 1px solid rgba(255,255,255,0.05);
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.section-label {
+  font-family: 'Inter', sans-serif;
+  font-weight: 300;
+  font-size: 0.85rem;
+  color: var(--amber);
+  text-transform: uppercase;
+  letter-spacing: 0.35em;
+  margin-bottom: 3rem;
+  opacity: 0.7;
+}
+
+.section-headline {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-style: italic;
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  color: var(--white);
+  line-height: 1.25;
+  margin-bottom: 2.5rem;
+  max-width: 720px;
+}
+
+/* ── ABOUT PORTRAIT ──
+   Quiet portrait above the heading. Centred. Square crop. */
+.portrait {
+  width: 210px;
+  height: 210px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center top;
+  margin: 0 0 3.5rem 0;
+  filter: grayscale(100%) brightness(0.95);
+  opacity: 0.9;
+  display: block;
+}
+
+.body-copy {
+  font-family: 'Inter', sans-serif;
+  font-weight: 300;
+  font-size: clamp(0.95rem, 1.15vw, 1.05rem);
+  color: rgba(240,237,232,0.85);
+  line-height: 2;
+  max-width: 720px;
+  letter-spacing: 0.015em;
+}
+
+.body-copy p + p { margin-top: 1.6em; }
+
+.pull-quote {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-style: italic;
+  font-size: clamp(1.25rem, 2.5vw, 1.6rem);
+  color: rgba(240,237,232,0.6);
+  line-height: 1.6;
+  margin: 3.5rem 0;
+  max-width: 500px;
+  padding-left: 1.5rem;
+  border-left: 1px solid var(--grey-mid);
+}
+
+/* ── BOOK PAGE PROSE ──
+   #book inherits the consistent 7rem section padding — no special override. */
+.book-frame {
+  /* Wrapper that hosts the prose plus two corner brackets in amber.
+     Subtle but distinctive. Echoes the typographic restraint of the site. */
+  position: relative;
+  max-width: 872px;
+  padding: 4rem 3.5rem 1.5rem;
+}
+
+.book-frame::before,
+.book-frame::after {
+  content: '';
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--amber);
+  opacity: 0.7;
+}
+
+/* Top-left corner */
+.book-frame::before {
+  top: 0;
+  left: 0;
+  border-right: none;
+  border-bottom: none;
+}
+
+/* Bottom-right corner */
+.book-frame::after {
+  bottom: 0;
+  right: 0;
+  border-left: none;
+  border-top: none;
+}
+
+.book-prose {
+  font-family: 'Inter', sans-serif;
+  font-weight: 300;
+  font-size: clamp(0.95rem, 1.15vw, 1.05rem);
+  color: rgba(240,237,232,0.85);
+  line-height: 2;
+  max-width: 760px;
+  letter-spacing: 0.015em;
+}
+
+.book-prose p + p {
+  margin-top: 1.8em;
+}
+
+.book-prose .opener {
+  color: var(--white);
+  font-weight: 400;
+}
+
+/* ── SUBSCRIBE ── */
+/* Tighten the gap between the heading and the box so they read as a unit. */
+#subscribe .section-headline { margin-bottom: 1.5rem; }
+
+.subscribe-inner {
+  margin-top: 0.5rem;
+  padding: 2.5rem;
+  border: 1px solid rgba(255,255,255,0.05);
+}
+
+.subscribe-inner .body-copy { margin-bottom: 1.5rem; }
+
+/* ── CONTACT ── */
+/* Tight, self-contained block: heading, one line, email + icon row. */
+#contact .section-headline { margin-bottom: 1.5rem; }
+
+.contact-line {
+  font-family: 'Inter', sans-serif;
+  font-weight: 300;
+  font-size: clamp(0.95rem, 1.15vw, 1.05rem);
+  color: rgba(240,237,232,0.85);
+  line-height: 2;
+  margin-bottom: 1.5rem;
+  max-width: 400px;
+  letter-spacing: 0.015em;
+}
+
+.contact-email {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-style: italic;
+  font-size: 1.3rem;
+  color: var(--white);
+  text-decoration: none;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid var(--grey-mid);
+  padding-bottom: 0.1em;
+  transition: border-color 0.3s, color 0.3s;
+}
+
+.contact-email:hover { color: var(--amber); border-color: var(--amber); }
+
+/* ── CONTACT ROW (email + social inline) ── */
+.contact-row {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  color: var(--grey-soft);
+  transition: color 0.3s, opacity 0.3s;
+  opacity: 0.7;
+}
+
+.social-link:hover {
+  color: var(--amber);
+  opacity: 1;
+}
+
+.social-link svg {
+  width: 22px;
+  height: 22px;
+}
+
+/* ── FOOTER ── */
+footer {
+  border-top: 1px solid rgba(255,255,255,0.05);
+  padding: 2rem 4rem;
+  max-width: 1080px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+footer p {
+  font-family: 'Inter', sans-serif;
+  font-weight: 300;
+  font-size: 0.6rem;
+  color: var(--grey-mid);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+/* ── MOBILE ── */
+@media (max-width: 640px) {
+  nav { padding: 1.5rem 1.8rem; }
+  .nav-links { gap: 1.8rem; }
+  section { padding: 5rem 1.8rem; }
+  #home { padding: 7rem 1.8rem 4rem; }
+  footer { padding: 1.8rem; flex-direction: column; gap: 0.6rem; text-align: center; }
+  .subscribe-inner { padding: 2rem 1.5rem; }
+  .portrait { width: 165px; height: 165px; }
+  .book-frame { padding: 2.5rem 1.5rem; }
+  .book-frame::before,
+  .book-frame::after { width: 22px; height: 22px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #particle-canvas { display: none !important; }
+  #landing { transition: opacity 0.3s ease; }
+}
