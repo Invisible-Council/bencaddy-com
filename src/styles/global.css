@@ -106,6 +106,9 @@ nav {
   text-transform: uppercase;
 }
 
+/* Short "BC" logo shows only on mobile (toggled in the mobile media query). */
+.logo-short { display: none; }
+
 .nav-links { display: flex; gap: 3rem; list-style: none; }
 
 .nav-links a {
@@ -150,7 +153,7 @@ section {
   #about    { padding-top: 8rem;  padding-bottom: 8rem; }
   #book     { padding-top: 10rem; padding-bottom: 6rem; }
   #subscribe { padding-top: 6rem;  padding-bottom: 6rem; }
-  #contact  { padding-top: 5rem;  padding-bottom: 8rem; }
+  #contact  { padding-top: 3rem;  padding-bottom: 8rem; }
 }
 
 /* Book gets a wider reading column so the bracket frame can host the
@@ -423,10 +426,15 @@ footer p {
 
 /* ── MOBILE ── */
 @media (max-width: 640px) {
-  nav { padding: 1.5rem 1.8rem; }
-  .nav-links { gap: 1.8rem; }
+  nav { padding: 1.2rem 1.4rem; }
+  .nav-logo { font-size: 1rem; letter-spacing: 0.2em; }
+  .logo-full { display: none; }
+  .logo-short { display: inline; }
+  .nav-links { gap: 1.2rem; }
+  .nav-links a { font-size: 0.7rem; letter-spacing: 0.15em; }
   section { padding: 5rem 1.8rem; }
   #home { padding: 7rem 1.8rem 4rem; }
+  #contact { padding-top: 2.5rem; }
   footer { padding: 1.8rem; flex-direction: column; gap: 0.6rem; text-align: center; }
   .subscribe-inner { padding: 2rem 1.5rem; }
   .portrait { width: 165px; height: 165px; }
