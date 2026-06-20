@@ -434,6 +434,7 @@ footer p {
   .nav-links a { font-size: 0.7rem; letter-spacing: 0.15em; }
   section { padding: 5rem 1.8rem; }
   #home { padding: 7rem 1.8rem 4rem; }
+  .home-name { font-size: 0.7rem; letter-spacing: 0.22em; }
   #contact { padding-top: 2.5rem; }
   footer { padding: 1.8rem; flex-direction: column; gap: 0.6rem; text-align: center; }
   .subscribe-inner { padding: 2rem 1.5rem; }
