@@ -58,7 +58,7 @@ body {
   font-family: 'Inter', sans-serif;
   font-weight: 300;
   font-size: 0.85rem;
-  color: rgba(255,255,255,0.35);
+  color: rgba(255,255,255,0.75);
   letter-spacing: 0.25em;
   text-transform: uppercase;
 }
